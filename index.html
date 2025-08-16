@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MOOD</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #04450c30;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      position: relative;
+      z-index: 0;
+    }
+    /* Imagen de fondo transparente */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: url("https://files.kick.com/images/user/66655826/profile_image/conversion/1382dd2a-a212-4efc-8a3d-ad728d9090af-fullsize.webp") center 36% /cover no-repeat;
+      opacity: 0.1; /* 👈 Ajusta la transparencia (0 = invisible, 1 = sin transparencia) */
+      z-index: -1;
+    }
+    header {
+      background: #12582f;
+      color: white;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+    header img {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid white;
+      cursor: pointer;
+    }
+    header div {
+      text-align: left;
+      cursor: pointer;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 1.8rem;
+    }
+    header p {
+      margin: 0;
+      font-size: 0.9rem;
+    }
+    nav {
+      background: #017732;
+      padding: 10px;
+      text-align: center;
+    }
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    section {
+      padding: 30px;
+      max-width: 900px;
+      margin: auto;
+      display: none;
+    }
+    .card {
+      background: white;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    form {
+      margin-top: 15px;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    button {
+      margin-top: 15px;
+      background: #2ecc71;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    button:hover {
+      background: #27ae60;
+    }
+    .thank-you {
+      margin-top: 15px;
+      color: #27ae60;
+      font-weight: bold;
+      display: none;
+    }
+    section.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <header onclick="showSection('sobre')">
+    <img src="https://files.kick.com/images/user/66655826/profile_image/conversion/1382dd2a-a212-4efc-8a3d-ad728d9090af-fullsize.webp" alt="Logo MOOD">
+    <div>
+      <h1>MOOD</h1>
+      <p>Originales y sinceros, porque usar máscaras cansa</p>
+    </div>
+  </header>
+
+  <nav>
+    <a onclick="showSection('sobre')">¿Qué es MOOD?</a>
+    <a onclick="showSection('responde')">MOOD Responde</a>
+    <a onclick="showSection('buzon')">El Buzón</a>
+    <a onclick="showSection('redes')">Redes Sociales</a>
+  </nav>
+
+  <!-- Sobre MOOD -->
+  <section id="sobre" class="card active">
+    <h2>¿Qué es MOOD?</h2>
+    <p>MOOD no es un podcast, es un lugar donde amigos se juntan y hablan acerca de sus días, situaciones que pasan, pasaron y etc. Un lugar donde se habla de todo porque pensar en qué hablar cansa, y muchas veces solo se finge y no son como realmente son.</p>
+    <p>MOOD es un espacio donde los estados de ánimo se vuelven historias.  
+    Aquí no hay guiones: solo amigos compartiendo lo que piensan, lo que sienten y lo que viven.  
+    A veces reflexivos, a veces divertidos, pero siempre auténticos.  
+    MOOD es estar presente, reír, hablar en serio, escuchar y conectar con ustedes.</p>
+  </section>
+
+  <!-- MOOD Responde -->
+  <section id="responde" class="card">
+    <h2>🎤 MOOD RESPONDE</h2>
+    <p>Envía tu pregunta y deja que MOOD la responda con su toque único.</p>
+    <form id="form-responde" action="https://formspree.io/f/myzpvqkl" method="POST">
+      <label for="name">Tu nombre (opcional):</label>
+      <input type="text" name="name" id="name">
+
+      <label for="question">Tu pregunta:</label>
+      <textarea name="question" id="question" rows="4" required placeholder="Escribe tu pregunta aquí..."></textarea>
+
+      <button type="submit">Enviar Pregunta</button>
+      <p class="thank-you" id="thanks-responde">✅ ¡Gracias! Tu pregunta fue enviada...</p>
+    </form>
+  </section>
+
+  <!-- El Buzón -->
+  <section id="buzon" class="card">
+    <h2>📮 EL BUZÓN</h2>
+    <p>Comparte de forma anónima tu historia, anécdota o secreto. Aquí nadie te juzga...</p>
+    <form id="form-buzon" action="https://formspree.io/f/mkgzeljw" method="POST">
+      <label for="story">Cuéntanos:</label>
+      <textarea name="story" id="story" rows="6" required placeholder="Escribe lo que quieras compartir..."></textarea>
+
+      <button type="submit">Enviar al Buzón</button>
+      <p class="thank-you" id="thanks-buzon">✅ ¡Gracias! Tu mensaje fue enviado...</p>
+    </form>
+  </section>
+
+  <!-- Redes Sociales -->
+  <section id="redes" class="card">
+    <h2>Síguenos</h2>
+    <p>
+      Kick: <a href="https://kick.com/moodns" target="_blank">https://kick.com/moodns</a><br>
+      Instagram: <a href="https://www.instagram.com/moodns_pe/" target="_blank">@moodns_pe</a><br>
+      TikTok: <a href="https://www.tiktok.com/@moodns_pe?lang=es-419" target="_blank">@moodns_pe</a>
+    </p>
+  </section>
+
+  <script>
+    function showSection(id) {
+      const sections = document.querySelectorAll("section");
+      sections.forEach(sec => sec.classList.remove("active"));
+      document.getElementById(id).classList.add("active");
+    }
+
+    function handleFormSubmit(formId, thanksId) {
+      const form = document.getElementById(formId);
+      const thanks = document.getElementById(thanksId);
+
+      form.addEventListener("submit", async function(event) {
+        event.preventDefault();
+        const formData = new FormData(form);
+
+        try {
+          const response = await fetch(form.action, {
+            method: form.method,
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+          });
+
+          if (response.ok) {
+            form.reset();
+            thanks.style.display = "block"; 
+            setTimeout(() => {
+              thanks.style.display = "none";
+            }, 5000);
+          } else {
+            alert("❌ Ocurrió un error. Intenta de nuevo.");
+          }
+        } catch (error) {
+          alert("❌ No se pudo enviar. Revisa tu conexión.");
+        }
+      });
+    }
+
+    handleFormSubmit("form-responde", "thanks-responde");
+    handleFormSubmit("form-buzon", "thanks-buzon");
+  </script>
+</body>
+</html>
